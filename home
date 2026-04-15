@@ -1,0 +1,156 @@
+import { Sidebar } from "./components/Sidebar";
+import { StatCard } from "./components/StatCard";
+import { TodayTimeline } from "./components/TodayTimeline";
+import { UpcomingCard } from "./components/UpcomingCard";
+import { useState } from "react";
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const upcomingReservations = [
+    {
+      id: 1,
+      startDate: "Thu, April 2, 2026",
+      endDate: "Thu, April 2, 2026",
+      vehicleType: "Vehicle type: Car/Van/SUV",
+      vehicle: "Vehicle: Crossover-Prkg #14",
+      category: "Transportation",
+      userName: "Jane Doe",
+      location: "Balsam Lake",
+      status: "reserved" as const,
+    },
+    {
+      id: 2,
+      startDate: "Fri, April 3, 2026",
+      endDate: "Mon, April 6, 2026",
+      vehicleType: "Vehicle type: Car/Van/SUV",
+      vehicle: "Vehicle: Crossover-Prkg #14",
+      category: "Transportation",
+      userName: "Jane Doe",
+      location: "Balsam Lake",
+      status: "reserved" as const,
+    },
+    {
+      id: 3,
+      startDate: "Tue, April 7, 2026",
+      endDate: "Wed, April 8, 2026",
+      vehicleType: "Vehicle type: Car/Van/SUV",
+      vehicle: "Vehicle: Crossover-Prkg #14",
+      category: "Transportation",
+      userName: "Jane Doe",
+      location: "Balsam Lake",
+      status: "reserved" as const,
+    },
+    {
+      id: 4,
+      startDate: "Thu, April 9, 2026",
+      endDate: "Fri, April 10, 2026",
+      vehicleType: "Vehicle type: Car/Van/SUV",
+      vehicle: "Vehicle: Crossover-Prkg #14",
+      category: "Transportation",
+      userName: "Jane Doe",
+      location: "Balsam Lake",
+      status: "reserved" as const,
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[#0c4274] via-[#1e5a8c] to-[#2e73dc] p-[18px] flex gap-[20px]">
+      {/* Sidebar */}
+      <Sidebar onNavigate={setCurrentPage} />
+
+      {/* Main Content */}
+      <div className="flex-1 overflow-auto">
+        {/* Header */}
+        <div className="bg-[#0c4274] rounded-[10px] px-[30px] py-[20px] mb-[20px] flex items-center justify-between">
+          <div>
+            <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[28px] leading-[32px] text-white mb-[4px]">
+              Hello!
+            </h1>
+            <p className="font-['Inter:Medium',sans-serif] font-medium text-[14px] leading-[20px] text-white opacity-80">
+              Welcome back, Jane Doe
+            </p>
+          </div>
+          <button className="bg-white rounded-[10px] px-[20px] py-[10px] flex items-center gap-[8px] cursor-pointer hover:bg-[#f5f5f5] transition-colors">
+            <svg className="size-[17px]" fill="none" viewBox="0 0 17 17">
+              <path
+                d="M14.875 8.5C14.875 8.6409 14.819 8.77602 14.7194 8.87565C14.6198 8.97528 14.4846 9.03125 14.3438 9.03125H9.03125V14.3438C9.03125 14.4846 8.97528 14.6198 8.87565 14.7194C8.77602 14.819 8.6409 14.875 8.5 14.875C8.3591 14.875 8.22398 14.819 8.12435 14.7194C8.02472 14.6198 7.96875 14.4846 7.96875 14.3438V9.03125H2.65625C2.51535 9.03125 2.38023 8.97528 2.2806 8.87565C2.18097 8.77602 2.125 8.6409 2.125 8.5C2.125 8.3591 2.18097 8.22398 2.2806 8.12435C2.38023 8.02472 2.51535 7.96875 2.65625 7.96875H7.96875V2.65625C7.96875 2.51535 8.02472 2.38023 8.12435 2.2806C8.22398 2.18097 8.3591 2.125 8.5 2.125C8.6409 2.125 8.77602 2.18097 8.87565 2.2806C8.97528 2.38023 9.03125 2.51535 9.03125 2.65625V7.96875H14.3438C14.4846 7.96875 14.6198 8.02472 14.7194 8.12435C14.819 8.22398 14.875 8.3591 14.875 8.5Z"
+                fill="#0C4274"
+              />
+            </svg>
+            <p className="font-['Inter:Medium',sans-serif] font-medium text-[15px] leading-[20px] text-[#0c4274]">
+              Add New
+            </p>
+          </button>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="flex gap-[16px] mb-[30px]">
+          <StatCard
+            type="reserved"
+            count={5}
+            subtitle="4 Pending"
+            subtitleColor="#2e73dc"
+          />
+          <StatCard
+            type="pickup"
+            count={1}
+            subtitle="1 Trip started"
+            subtitleColor="#694ebe"
+          />
+          <StatCard
+            type="return"
+            count={0}
+            subtitle="1 Vehicle to return"
+            subtitleColor="#f9e50c"
+          />
+          <StatCard
+            type="all"
+            count={5}
+            subtitle="5 reservations total"
+          />
+        </div>
+
+        {/* Today and Upcoming Section */}
+        <div className="flex gap-[20px]">
+          {/* Today Section */}
+          <div className="w-[337px]">
+            <div className="mb-[15px]">
+              <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[20px] leading-[24px] text-white mb-[4px]">
+                Today
+              </p>
+              <p className="font-['Inter:Medium',sans-serif] font-medium text-[14px] leading-[20px] text-white opacity-80">
+                Wed, April 1, 2026
+              </p>
+            </div>
+            <TodayTimeline />
+          </div>
+
+          {/* Upcoming Section */}
+          <div className="flex-1">
+            <div className="flex items-center justify-between mb-[15px]">
+              <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[20px] leading-[24px] text-white">
+                Upcoming
+              </p>
+              <button className="cursor-pointer hover:opacity-80 transition-opacity">
+                <p className="font-['Inter:Medium',sans-serif] font-medium text-[14px] leading-[20px] text-white underline">
+                  View All
+                </p>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-[16px]">
+              {upcomingReservations.map((reservation) => (
+                <UpcomingCard
+                  key={reservation.id}
+                  {...reservation}
+                  onView={() => console.log("View reservation", reservation.id)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
